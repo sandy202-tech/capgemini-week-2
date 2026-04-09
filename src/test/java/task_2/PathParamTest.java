@@ -1,0 +1,23 @@
+package task_2;
+
+
+import io.restassured.RestAssured;
+import org.testng.annotations.Test;
+
+public class PathParamTest {
+
+    @Test
+    public void pathParamTest() {
+
+        RestAssured.baseURI = "http://49.249.28.218:8091";
+
+        RestAssured
+                .given()
+                .pathParam("projectId", "TY_PROJ_001")
+                .when()
+                .get("/projects/{projectId}")
+                .then()
+                .statusCode(200)
+                .log().all();
+    }
+}
